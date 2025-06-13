@@ -24,7 +24,7 @@ int main() {
     // creating an array of student objects
     Student students[NUM_STUDENTS];
 
-    printf("Please enter student name and 13 test results: \n");
+    // printf("Please enter student name and 13 test results: \n");
 
     // looping a scan for student names and results
     for (int i = 0; i < NUM_STUDENTS; i++) {
