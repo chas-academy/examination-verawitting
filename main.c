@@ -1,13 +1,11 @@
 //Write your code in this file
 #include <stdio.h>
-#include <_ctype.h> // toupper
 
 /*
 This program handles five students and their test results from 13 tests.
 It reads the result with scanf(), analyses the average of points for each student,
 the student with the best score and the student whoose score are below the average of the group.
-(I used a library to convert to versals in the beginning of names (toupper) and created an object 
-to keep track of the students and their results, I hope that is ok even though this library and objects were not part of the course.)
+(I created an object to keep track of the students and their results, I hope that is ok even though it was not part of the course.)
 */
 
 // defining constants for number of tests and students to aviod "magic numbers" 
@@ -30,8 +28,12 @@ int main() {
 
     // looping a scan for student names and results
     for (int i = 0; i < NUM_STUDENTS; i++) {
-        // populating name to student object
+        // changing the first letter to uppercase if it was lower case
+        // and populating name to student object
         scanf("%s", students[i].name);
+        if (students[i].name[0] >= 'a' && students[i].name[0] <= 'z') {
+            students[i].name[0] = students[i].name[0] - ('a' - 'A');
+        }
         // populating results to student object
         for (int j = 0; j < NUM_TESTS; j++) {
             scanf("%d", &students[i].result[j]);
@@ -69,16 +71,13 @@ int main() {
     // calculating the total average
     totalAverage /= NUM_STUDENTS;
 
-    // getting the highest ranking student (the one with highest maxIndex)
-    // and printing the name.
-    students[maxIndex].name[0] = toupper(students[maxIndex].name[0]);
+    // and printing the name of the highest ranking student
     printf("%s\n", students[maxIndex].name);
 
     // looping through students to compare their average to the totalAverage
     // printing their name if if it were below average
     for (int i = 0; i < NUM_STUDENTS; i++) {
         if (students[i].average < totalAverage) {
-            students[i].name[0] = toupper(students[i].name[0]);
             printf("%s\n", students[i].name);
         }
     }
